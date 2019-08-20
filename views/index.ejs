@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> Secure RPC </title>
+</head>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+<body class="container">
+    <main>
+        <div id="info" class="jumbotron" style="padding: 3rem 13rem;margin-top: 4%;text-align: center;margin-left: 68px;margin-right: 68px;">
+            <table class="table">
+                <thead>
+                    <h1>Application Info</h1>
+                </thead>
+                <br>
+                <tbody>
+                    <tr>
+                        <td><strong> First Name:</strong></td>
+                        <td><%= firstName %></td>
+                    </tr>
+                    <tr>
+                        <td><strong> Last Name:</strong></td>
+                        <td><%= lastName %></td>
+                    </tr>
+                    <tr>
+                        <td><strong> Email:</strong></td>
+                        <td><%= email %></td>
+                    </tr>
+                    <tr>
+                        <td><strong> APP URL:</strong></td>
+                        <td><%= appURL %></td>
+                    </tr>
+                    <tr>
+                        <td><strong> APP NAME:</strong></td>
+                        <td><%= appName %></td>
+                    </tr>
+                    <tr>
+                        <td><strong> Phone Number:</strong></td>
+                        <td><%= phoneNumber %></td>
+                    </tr>
+                    <tr>
+                        <td><strong> Address:</strong></td>
+                        <td><%= address %></td>
+                    </tr>
+                </tbody>
+            </table>
+            <script>
+
+                function approve() {
+
+                    appURL = "<%= appURL %>"
+                    email = "<%= email %>"
+                    username = "<%= firstName %>"
+
+                    axios.post('http://localhost:3000/approve', {
+                        appURL: appURL,
+                        username: username,
+                        email: email
+                    }, {
+                            headers: {
+                                'Content-Type': 'application/json',
+                            }
+                        })
+                        .then(result => {
+                            window.alert('UFW Response: ' + result.data.result)
+                        });
+                }
+
+                function reject() {
+
+                    email = "<%= email %>"
+                    username = "<%= firstName %>"
+
+                    axios.post('http://localhost:3000/reject', {
+                        username: username,
+                        email: email
+                    }, {
+                            headers: {
+                                'Content-Type': 'application/json',
+                            }
+                        })
+                        .then(result => {
+                            window.alert(result.data.result)
+                        });
+                }
+            </script>
+        </div>
+        <div style="text-align: center;">
+            <button type="button" style="color: black;" class="btn btn-default" onclick="approve()" id="approve">Approve</button>&nbsp &nbsp &nbsp
+            <button type="button" style="color: black;" class="btn btn-default" onclick="reject()" id="reject">Reject</button>
+        </div>
+    </main>
+    <script>
+        data = "<%= fileHash %>"
+        var image = new Image();
+        image.width = 400;
+        image.height = 270;
+        image.src = 'data:image/png;base64,' + data;
+        var div = document.getElementById("info");
+        div.appendChild(image);
+    </script>
+</body>
+</html>
