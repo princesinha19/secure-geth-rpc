@@ -23,12 +23,12 @@ The mechanism of addition to the whitelist is fairly simple yet effective. Manua
 ## Steps to run this project:-
 1. Clone the repository
 2. Start IPFS in background
-3. Go inside the genesishack folder (using command ​ cd genesishack​ ), and run command
+3. Go inside the cloned directory (using command ​ cd secure-geth-rpc​ ), and run command
 npm install
 It will install all the dependency for the project.
-4. Then inside the folder, there is a ​ .env file. You need to fill all the blank details like. Gmail
+4. Then inside the folder, there is a ​ sample.env file. You need to fill all the blank details like. Gmail
 username and password from which system will send mail to admin and user.
-5. Then type command ​ nodemon
+5. Then type command ​ nodemon or npm run start
 6. Now, you can go to http://127.0.0.1:3000 to fill-up the RPC connection form.
 7. If you will fill the form (as a user) then, it will show you a IPFS hash. At the same time, it
 will send a mail to the admin for new request with the link.
