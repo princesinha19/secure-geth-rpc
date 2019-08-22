@@ -20,6 +20,18 @@ The mechanism of addition to the whitelist is fairly simple yet effective. Manua
 ## Architecture Diagram
 ![alt text](https://github.com/princesinha19/secure-geth-rpc/blob/dev/images/Secure%20RPC.png)
 
+## Steps for configuring UFW
+
+#### To download UFW:
+> sudo apt-get install ufw
+
+#### Run Commands:
+- sudo ufw reset
+- sudo ufw enable
+- sudo ufw allow ssh
+- sudo ufw allow http
+- sudo ufw default allow outgoing
+
 ## Steps to run this project:-
 1. Clone the repository
 2. Start IPFS in background
